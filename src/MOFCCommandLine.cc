@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-template class paludis::InstantiationPolicy<MOFCCommandLine, paludis::instantiation_method::SingletonTag>;
+template class paludis::Singleton<MOFCCommandLine>;
 
 MOFCCommandLine::MOFCCommandLine() :
     ArgsHandler(),

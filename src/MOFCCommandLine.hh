@@ -7,9 +7,9 @@
 
 class MOFCCommandLine :
     public paludis::args::ArgsHandler,
-    public paludis::InstantiationPolicy<MOFCCommandLine, paludis::instantiation_method::SingletonTag>
+    public paludis::Singleton<MOFCCommandLine>
 {
-    friend class paludis::InstantiationPolicy<MOFCCommandLine, paludis::instantiation_method::SingletonTag>;
+    friend class paludis::Singleton<MOFCCommandLine>;
 
     private:
         MOFCCommandLine();
