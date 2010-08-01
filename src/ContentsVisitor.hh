@@ -7,18 +7,18 @@
 
 #include <paludis/paludis.hh>
 
-typedef std::map<std::string, std::vector<std::tr1::shared_ptr<const paludis::PackageID> > > ContentsList;
+typedef std::map<std::string, std::vector<std::shared_ptr<const paludis::PackageID> > > ContentsList;
 
 class ContentsVisitor
 {
     public:
-        ContentsVisitor(const std::tr1::shared_ptr<const paludis::PackageID>&, ContentsList*);
+        ContentsVisitor(const std::shared_ptr<const paludis::PackageID>&, ContentsList*);
         void visit(const paludis::ContentsFileEntry & d);
         void visit(const paludis::ContentsDirEntry & d);
         void visit(const paludis::ContentsOtherEntry & d);
         void visit(const paludis::ContentsSymEntry & d);
     private:
-		std::tr1::shared_ptr<const paludis::PackageID> pkgID;
+		std::shared_ptr<const paludis::PackageID> pkgID;
         ContentsList* contents;
 };
 

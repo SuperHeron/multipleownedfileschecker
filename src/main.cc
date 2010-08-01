@@ -6,8 +6,8 @@
 int main(int argc, char * argv[])
 {
     MOFCCommandLine::get_instance()->run(argc, argv, "mofc", "MOFC_OPTIONS", "MOFC_CMDLINE");
-    std::tr1::shared_ptr<paludis::Environment> env(paludis::EnvironmentFactory::get_instance()->create(MOFCCommandLine::get_instance()->a_environment.argument()));
-    std::tr1::shared_ptr<paludis::PackageIDSequence> ids = (*env)[paludis::selection::AllVersionsSorted(paludis::generator::InRepository(paludis::RepositoryName("installed")))];
+    std::shared_ptr<paludis::Environment> env(paludis::EnvironmentFactory::get_instance()->create(MOFCCommandLine::get_instance()->a_environment.argument()));
+    std::shared_ptr<paludis::PackageIDSequence> ids = (*env)[paludis::selection::AllVersionsSorted(paludis::generator::InRepository(paludis::RepositoryName("installed")))];
     ContentsList contents;
     bool multiOwnersFound = false;
     for(paludis::PackageIDSequence::ConstIterator pkgID(ids->begin()), pkgID_end(ids->end()); pkgID != pkgID_end; ++pkgID)
@@ -29,7 +29,7 @@ int main(int argc, char * argv[])
     	{
     		multiOwnersFound = true;
 			std::cout << clit->first << std::endl;
-			for(std::vector<std::tr1::shared_ptr<const paludis::PackageID> >::const_iterator pkgit = clit->second.begin(), pkgit_end = clit->second.end(); pkgit != pkgit_end; ++pkgit)
+			for(std::vector<std::shared_ptr<const paludis::PackageID> >::const_iterator pkgit = clit->second.begin(), pkgit_end = clit->second.end(); pkgit != pkgit_end; ++pkgit)
 			{
 				std::cout << "	" << (*pkgit)->canonical_form(paludis::idcf_full) << std::endl;
 			}

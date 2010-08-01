@@ -1,6 +1,6 @@
 #include "ContentsVisitor.hh"
 
-ContentsVisitor::ContentsVisitor(const std::tr1::shared_ptr<const paludis::PackageID>& pkgID, ContentsList* contents)
+ContentsVisitor::ContentsVisitor(const std::shared_ptr<const paludis::PackageID>& pkgID, ContentsList* contents)
 {
 	this->pkgID = pkgID;
 	this->contents = contents;
@@ -12,7 +12,7 @@ void ContentsVisitor::visit(const paludis::ContentsFileEntry & d)
 	ContentsList::iterator clit = this->contents->find(fileName);
 	if(clit == this->contents->end())
 	{
-		std::vector<std::tr1::shared_ptr<const paludis::PackageID> > vector;
+		std::vector<std::shared_ptr<const paludis::PackageID> > vector;
 		vector.push_back(this->pkgID);
 		this->contents->insert(std::make_pair(fileName, vector));
 	}
@@ -34,7 +34,7 @@ void ContentsVisitor::visit(const paludis::ContentsSymEntry & d)
 	ContentsList::iterator clit = this->contents->find(fileName);
 	if(clit == this->contents->end())
 	{
-		std::vector<std::tr1::shared_ptr<const paludis::PackageID> > vector;
+		std::vector<std::shared_ptr<const paludis::PackageID> > vector;
 		vector.push_back(this->pkgID);
 		this->contents->insert(std::make_pair(fileName, vector));
 	}
