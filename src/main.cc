@@ -1,6 +1,7 @@
 #include "MOFCCommandLine.hh"
 #include "ContentsVisitor.hh"
 
+#include <algorithm>
 #include <iostream>
 
 int main(int argc, char * argv[])
