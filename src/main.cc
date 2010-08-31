@@ -13,7 +13,7 @@ int main(int argc, char * argv[])
     bool multiOwnersFound = false;
     for(paludis::PackageIDSequence::ConstIterator pkgID(ids->begin()), pkgID_end(ids->end()); pkgID != pkgID_end; ++pkgID)
     {
-		if((*pkgID)->contents_key() != 0)
+		if((*pkgID)->contents_key().get() != NULL)
 		{
 			ContentsVisitor visitor(*pkgID, &contents);
 			std::for_each(
