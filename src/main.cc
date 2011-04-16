@@ -17,8 +17,8 @@ int main(int argc, char * argv[])
 		{
 			ContentsVisitor visitor(*pkgID, &contents);
 			std::for_each(
-				paludis::indirect_iterator((*pkgID)->contents_key()->value()->begin()),
-				paludis::indirect_iterator((*pkgID)->contents_key()->value()->end()),
+				paludis::indirect_iterator((*pkgID)->contents_key()->parse_value()->begin()),
+				paludis::indirect_iterator((*pkgID)->contents_key()->parse_value()->end()),
 				paludis::accept_visitor(visitor)
 			);
 		}

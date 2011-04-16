@@ -8,7 +8,7 @@ ContentsVisitor::ContentsVisitor(const std::shared_ptr<const paludis::PackageID>
 
 void ContentsVisitor::visit(const paludis::ContentsFileEntry & d)
 {
-	std::string fileName = paludis::stringify(d.location_key()->value());
+	std::string fileName = paludis::stringify(d.location_key()->parse_value());
 	ContentsList::iterator clit = this->contents->find(fileName);
 	if(clit == this->contents->end())
 	{
@@ -30,7 +30,7 @@ void ContentsVisitor::visit(const paludis::ContentsOtherEntry & d)
 
 void ContentsVisitor::visit(const paludis::ContentsSymEntry & d)
 {
-	std::string fileName = paludis::stringify(d.location_key()->value());
+	std::string fileName = paludis::stringify(d.location_key()->parse_value());
 	ContentsList::iterator clit = this->contents->find(fileName);
 	if(clit == this->contents->end())
 	{
