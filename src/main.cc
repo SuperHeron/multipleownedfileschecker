@@ -13,16 +13,16 @@ int main(int argc, char * argv[])
     bool multiOwnersFound = false;
     for(paludis::PackageIDSequence::ConstIterator pkgID(ids->begin()), pkgID_end(ids->end()); pkgID != pkgID_end; ++pkgID)
     {
-		if((*pkgID)->contents_key().get() != NULL)
+		std::shared_ptr<const paludis::Contents> pkgContents = (*pkgID)->contents();
+		if(pkgContents)
 		{
 			ContentsVisitor visitor(*pkgID, &contents);
 			std::for_each(
-				paludis::indirect_iterator((*pkgID)->contents_key()->parse_value()->begin()),
-				paludis::indirect_iterator((*pkgID)->contents_key()->parse_value()->end()),
+				paludis::indirect_iterator(pkgContents->begin()),
+				paludis::indirect_iterator(pkgContents->end()),
 				paludis::accept_visitor(visitor)
 			);
 		}
-
     }
     for(ContentsList::const_iterator clit = contents.begin(), clit_end = contents.end(); clit != clit_end; ++clit)
     {
